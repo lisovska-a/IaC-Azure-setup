@@ -1,0 +1,25 @@
+#cloud-config
+apt:
+  preserve_sources_list: true
+  primary:
+    - arches: [amd64]
+      uri: http://archive.ubuntu.com/ubuntu
+package_update: true
+package_upgrade: false
+
+write_files:
+  - path: /usr/local/bin/install_nginx.sh
+    permissions: '0755'
+    content: |
+      #!/usr/bin/env bash
+      set -euxo pipefail
+      for i in {1..5}; do
+        sudo apt-get update && sudo apt-get install -y nginx && break || {
+          echo "install try $i failed; sleeping..."
+          sleep 10
+        }
+      done
+      sudo systemctl enable nginx --now
+
+runcmd:
+  - [/usr/local/bin/install_nginx.sh]
