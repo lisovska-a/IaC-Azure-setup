@@ -39,3 +39,12 @@ module "vm" {
   private_subnet_id = module.network.private_subnet_id
 }
 
+module "autoscale_vmss" {
+  source   = "../../modules/vmss_autoscale"
+  rg_name  = var.rg_name
+  location = var.location
+  vmss_id  = module.vmss.vmss_id
+
+  depends_on = [module.vmss]
+  
+}

@@ -61,7 +61,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "this" {
   location            = var.location
   resource_group_name = var.rg_name
   sku                 = "Standard_B2s"
-  instances           = 2
+  instances           = 1
   admin_username      = var.admin_username
 
   source_image_reference {

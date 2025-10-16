@@ -39,7 +39,6 @@ resource "azurerm_subnet_nat_gateway_association" "public_subnet_nat" {
   nat_gateway_id = azurerm_nat_gateway.natgw.id
 }
 
-
 resource "azurerm_subnet" "private" {
   name                 = var.priv_name
   resource_group_name  = var.rg_name
