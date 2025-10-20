@@ -29,6 +29,17 @@ resource "azurerm_network_security_group" "public" {
   }
 
   security_rule {
+  name                        = "out-smb-445-to-storage"
+  priority                    = 110
+  direction                   = "Outbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "445"
+  source_address_prefix       = "*"
+  destination_address_prefix  = "Storage"
+ }
+  security_rule {
     name                        = "Allow-Outbound-Internet"
     priority                    = 200
     direction                   = "Outbound"

@@ -25,4 +25,15 @@ variable "admin_username" {
 }
 variable "ssh_public_key" {
    type = string
+   sensitive = true
+}
+variable "admin_password" {
+   type      = string
+   sensitive = true
+}
+variable "start_ip_address" {
+   type = string
+}
+variable "end_ip_address" {
+   type = string
 }
